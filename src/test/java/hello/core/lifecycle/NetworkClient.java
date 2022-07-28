@@ -7,7 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
     bean 생성 주기
     스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존 관계 주입 -> 초기화 콜백 -> 사용 -> 종료 콜백 -> 스프링 종료
  */
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {
 
     public String url;
 
@@ -38,16 +38,28 @@ public class NetworkClient implements InitializingBean, DisposableBean {
         해당 코드가 스프링에 의존한다, 메소드 이름 변경이 불가하다.
         거의 사용 x
      */
-    //InitializingBean
-    @Override
-    public void afterPropertiesSet() throws Exception {
+//    //InitializingBean
+//    @Override
+//    public void afterPropertiesSet() throws Exception {
+//        connect();
+//        call("초기화 연결 메세지");
+//    }
+//
+//    //DisposableBean
+//    @Override
+//    public void destroy() throws Exception {
+//        disconnect();
+//    }
+
+    public void init() {
         connect();
         call("초기화 연결 메세지");
     }
 
-    //DisposableBean
-    @Override
-    public void destroy() throws Exception {
+    public void close() {
         disconnect();
     }
+
+
 }
+

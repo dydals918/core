@@ -18,7 +18,12 @@ public class BeanLifeCycleTest {
     @Configuration
     static class LifeCycleConfig {
 
-        @Bean
+        /*
+            빈 등록 설정으로 초기화, 종료 콜백
+            코드를 고칠 수 없는 외부 라이브러리에도 적용 가능
+            destroyMethod 의 추론 기능이 default ( 대부분의 종료 콜백이름인 "close", "shutdown"을 찾아 사용해준다.)
+         */
+        @Bean(initMethod = "init", destroyMethod = "close")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://hello-spring.dev");
