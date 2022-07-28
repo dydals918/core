@@ -3,6 +3,9 @@ package hello.core.lifecycle;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 /*
     bean 생성 주기
     스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존 관계 주입 -> 초기화 콜백 -> 사용 -> 종료 콜백 -> 스프링 종료
@@ -51,15 +54,21 @@ public class NetworkClient {
 //        disconnect();
 //    }
 
+    /*
+        @PostConstruct, @PreDestroy
+        스프링에서 권장하는 방법
+        자바의 기술, 다른 컨테이너에서도 사용 가능
+        단, 외부 라이브러리에서는 사용 불가. 코드를 변경하지 못하는 경우 @Bean 설정을 사용
+     */
+    @PostConstruct
     public void init() {
         connect();
         call("초기화 연결 메세지");
     }
 
+    @PreDestroy
     public void close() {
         disconnect();
     }
-
-
 }
 
