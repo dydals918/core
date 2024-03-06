@@ -1,4 +1,16 @@
-# intelliJ
-# Spring Boot
-# 스프링 코어(다형성, OCP, DIP) 강의 공부
-# 인프런, 김영한 - 스프링 핵심원리
+# Spring Boot Project
+자바 웹 개발 기술 공부
+
+## 기술
+- Spring Bean
+- 객체 지향 설계
+- 싱글톤
+- @Configuration
+- @Component
+- DI
+
+## 개발 환경
+- 'Java 11'
+- 'Spring Boot 2.7.1'
+- **IDE** : Intellli J
+- **Dependency** : spring web, lombok
